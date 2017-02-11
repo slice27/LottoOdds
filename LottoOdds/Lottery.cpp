@@ -14,15 +14,16 @@ using namespace Lotto;
 Lottery::Lottery(int lottoSize, int maxNumber):
 	LottoGenerator(lottoSize, maxNumber)
 {
-	for (int i = 0; i <= mMaxNumber; ++i)
-	{
-		mLottoNumbers.push_back(false);
-	}
 	GenerateNewLotto();
 }
 
 void Lottery::GenerateNewLotto()
 {
+	for (int i = 0; i <= mMaxNumber; ++i)
+	{
+		mLottoNumbers.push_back(false);
+	}
+
 	for (int i = 0; i < mLottoSize; ++i)
 	{
 		mLottoNumbers[distributions[i](mRngEngine)] = true;
