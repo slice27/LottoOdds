@@ -16,14 +16,13 @@
 namespace Lotto
 {
 
-static const int LOTTO_SIZE_DEFAULT = 6;
-static const int LOTTO_MAX_NUMBER   = 49;
+const int LOTTO_SIZE_DEFAULT = 6;
+const int LOTTO_MAX_NUMBER   = 49;
 
 class LottoGenerator
 {
 public:
 	LottoGenerator(int lottoSize = LOTTO_SIZE_DEFAULT, int maxNumbers = LOTTO_MAX_NUMBER);
-	virtual void GenerateNewLotto() = 0;
 
 protected:
 	int mLottoSize;
