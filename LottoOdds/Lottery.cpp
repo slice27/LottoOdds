@@ -19,22 +19,26 @@ Lottery::Lottery(int lottoSize, int maxNumber):
 
 void Lottery::GenerateNewLotto()
 {
+	mLottoSelected.clear();
 	for (int i = 0; i <= mMaxNumber; ++i)
 	{
-		mLottoNumbers.push_back(false);
+		mLottoSelected.push_back(false);
 	}
-
+	LottoGenerator::GenerateNewLotto();
 	for (int i = 0; i < mLottoSize; ++i)
 	{
-		mLottoNumbers[distributions[i](mRngEngine)] = true;
+		mLottoSelected[GetNumberAtIndex(i)] = true;
 	}
 }
 
-bool Lottery::Compare(const LotteryGuess &guess)
+bool Lottery::Compare(const LottoGenerator &guess)
 {
 	for (int i = 0; i < mLottoSize; ++i)
 	{
-		
+		if (!mLottoSelected[guess.GetNumberAtIndex(i)])
+		{
+			return false;
+		}
 	}
 	return true;
 }

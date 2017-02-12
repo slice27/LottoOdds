@@ -20,11 +20,11 @@ class Lottery: public LottoGenerator
 {
 public:
 	Lottery(int lottoSize = Lotto::LOTTO_SIZE_DEFAULT, int maxNumber = Lotto::LOTTO_MAX_NUMBER);
-	bool Compare(const LotteryGuess &guess);
-	void GenerateNewLotto();
+	bool Compare(const LottoGenerator &guess);
+	virtual void GenerateNewLotto();
 
 private:
-	std::vector<bool> mLottoNumbers;
+	std::vector<bool> mLottoSelected;
 
 };
 

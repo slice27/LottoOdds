@@ -23,6 +23,8 @@ class LottoGenerator
 {
 public:
 	LottoGenerator(int lottoSize = LOTTO_SIZE_DEFAULT, int maxNumbers = LOTTO_MAX_NUMBER);
+	virtual void GenerateNewLotto();
+	int GetNumberAtIndex(int index) const;
 
 protected:
 	int mLottoSize;
@@ -31,6 +33,8 @@ protected:
 	std::vector<std::uniform_int_distribution<>> distributions;
 
 private:
+	std::vector<int> mLottoNumbers;
+
 	template<class T = std::mt19937, std::size_t N = T::state_size>
 	auto ProperlySeededRandomEngine () -> typename std::enable_if<!!N, T>::type {
 		typename T::result_type random_data[N];

@@ -10,7 +10,6 @@
 		C503D6131E4F8AF6005FCA6F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C503D6121E4F8AF6005FCA6F /* main.cpp */; };
 		C503D61B1E4F8C64005FCA6F /* LottoGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C503D6191E4F8C63005FCA6F /* LottoGenerator.cpp */; };
 		C503D61E1E4F96F9005FCA6F /* Lottery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C503D61C1E4F96F9005FCA6F /* Lottery.cpp */; };
-		C503D6211E4F9780005FCA6F /* LotteryGuess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C503D61F1E4F9780005FCA6F /* LotteryGuess.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,8 +31,6 @@
 		C503D61A1E4F8C64005FCA6F /* LottoGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LottoGenerator.hpp; sourceTree = "<group>"; };
 		C503D61C1E4F96F9005FCA6F /* Lottery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lottery.cpp; sourceTree = "<group>"; };
 		C503D61D1E4F96F9005FCA6F /* Lottery.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Lottery.hpp; sourceTree = "<group>"; };
-		C503D61F1E4F9780005FCA6F /* LotteryGuess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LotteryGuess.cpp; sourceTree = "<group>"; };
-		C503D6201E4F9780005FCA6F /* LotteryGuess.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LotteryGuess.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +66,6 @@
 				C503D6121E4F8AF6005FCA6F /* main.cpp */,
 				C503D6191E4F8C63005FCA6F /* LottoGenerator.cpp */,
 				C503D61A1E4F8C64005FCA6F /* LottoGenerator.hpp */,
-				C503D61F1E4F9780005FCA6F /* LotteryGuess.cpp */,
-				C503D6201E4F9780005FCA6F /* LotteryGuess.hpp */,
 				C503D61C1E4F96F9005FCA6F /* Lottery.cpp */,
 				C503D61D1E4F96F9005FCA6F /* Lottery.hpp */,
 			);
@@ -137,7 +132,6 @@
 				C503D61E1E4F96F9005FCA6F /* Lottery.cpp in Sources */,
 				C503D61B1E4F8C64005FCA6F /* LottoGenerator.cpp in Sources */,
 				C503D6131E4F8AF6005FCA6F /* main.cpp in Sources */,
-				C503D6211E4F9780005FCA6F /* LotteryGuess.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

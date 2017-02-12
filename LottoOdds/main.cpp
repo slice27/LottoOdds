@@ -13,7 +13,8 @@
 int main(int argc, const char * argv[])
 {
 	Lotto::Lottery lotto;
-	Lotto::LotteryGuess guess;
+	Lotto::LottoGenerator guess;
+	guess.GenerateNewLotto();
 
 	if (lotto.Compare(guess))
 		std::cout << "Guess matched the lotto." << std::endl;
