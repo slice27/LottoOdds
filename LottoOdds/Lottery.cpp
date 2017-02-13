@@ -13,7 +13,6 @@ using namespace Lotto;
 Lottery::Lottery(int lottoSize, int maxNumber):
 	LottoGenerator(lottoSize, maxNumber)
 {
-    GenerateNewLotto();
 }
 
 void Lottery::GenerateNewLotto()

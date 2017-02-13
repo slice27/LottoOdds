@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include <thread>
 #include <atomic>
 #include <future>
@@ -30,11 +31,9 @@ uint64_t LotteryTask(const Lotto::Lottery &lotto)
     return iterations;
 }
 
-int main(int argc, const char * argv[])
+uint64_t ExecuteLottery(const Lotto::Lottery &lotto, int threads, uint32_t &duration)
 {
-    Lotto::Lottery lotto;
-    int threads = std::thread::hardware_concurrency();
-    std::cout << "Executing on " << threads << " threads." << std::endl;
+    found = false;
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     std::vector<std::future<uint64_t>> futures;
     for (int i = 0; i < threads; ++i)
@@ -44,20 +43,45 @@ int main(int argc, const char * argv[])
         std::thread t { std::move(package), lotto };
         t.detach();
     }
+    uint64_t totalIterations = 0;
     for(std::future<uint64_t> &f : futures)
     {
-        f.wait();
+        totalIterations += f.get();
     }
     auto diff = std::chrono::steady_clock::now() - start;
-    std::cout << "Total time to run: " << std::chrono::duration_cast<std::chrono::milliseconds>(diff).count() << "ms" << std::endl;
-    int threadNumber = 0;
-    int64_t totalIterations = 0;
-    for (std::future<uint64_t> &f : futures)
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
+    return totalIterations;
+}
+
+int main(int argc, const char * argv[])
+{
+    Lotto::Lottery lotto;
+    int threads = std::thread::hardware_concurrency();
+    std::cout << "LottoOdds: Executing on " << threads << " threads." << std::endl;
+    uint64_t totalIterations = 0;
+    uint64_t totalExecutes = 100;
+    std::vector<uint64_t> numIterations;
+    std::vector<uint32_t> durations;
+    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+    for (int i = 0; i < totalExecutes; ++i)
     {
-        int64_t iterations = f.get();
-        totalIterations += iterations;
-        std::cout << "Thread " << ++threadNumber << " Iterations:" << iterations << std::endl;
+        lotto.GenerateNewLotto();
+        uint32_t duration = 0;
+        uint64_t numIteration = ExecuteLottery(lotto, threads, duration);
+        totalIterations += numIteration;
+        numIterations.push_back(numIteration);
+        durations.push_back(duration);
     }
+
+    auto diff = std::chrono::steady_clock::now() - start;
+    std::cout << "Total time to run: " << std::chrono::duration_cast<std::chrono::milliseconds>(diff).count() << "ms" << std::endl << std::endl;
+    std::cout << "Average number of iterations: " << totalIterations / totalExecutes << std::endl;
+    std::cout << "Per execution statistics:" << std::endl;
+    for (int i = 0; i < totalExecutes; ++i)
+    {
+        std::cout << "\tExecution: " << std::setw(8) << i+1 << "\tNum of iterations: " << std::setw(10) << numIterations[i] <<  "\tDuration: " << durations[i]  << " ms" << std::endl;
+    }
+    
     std::cout << "Total iterations to find a match: " << totalIterations << std::endl << std::endl;
     return 0;
 
