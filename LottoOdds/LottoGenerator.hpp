@@ -12,6 +12,8 @@
 #include <stdint.h>
 #include <random>
 #include <vector>
+#include <algorithm>
+#include <functional>
 
 namespace Lotto
 {
@@ -22,28 +24,28 @@ const int LOTTO_MAX_NUMBER   = 49;
 class LottoGenerator
 {
 public:
-	LottoGenerator(int lottoSize = LOTTO_SIZE_DEFAULT, int maxNumbers = LOTTO_MAX_NUMBER);
-	virtual void GenerateNewLotto();
-	int GetNumberAtIndex(int index) const;
+    LottoGenerator(int lottoSize = LOTTO_SIZE_DEFAULT, int maxNumbers = LOTTO_MAX_NUMBER);
+    virtual void GenerateNewLotto();
+    int GetNumberAtIndex(int index) const;
 
 protected:
-	int mLottoSize;
-	int mMaxNumber;
-	std::mt19937 mRngEngine;
-	std::vector<std::uniform_int_distribution<>> distributions;
+    int mLottoSize;
+    int mMaxNumber;
+    std::mt19937 mRngEngine;
+    std::vector<std::uniform_int_distribution<>> distributions;
 
 private:
-	std::vector<int> mLottoNumbers;
+    std::vector<int> mLottoNumbers;
 
-	template<class T = std::mt19937, std::size_t N = T::state_size>
-	auto ProperlySeededRandomEngine () -> typename std::enable_if<!!N, T>::type {
-		typename T::result_type random_data[N];
-		std::random_device source;
-		std::generate(std::begin(random_data), std::end(random_data), std::ref(source));
-		std::seed_seq seeds(std::begin(random_data), std::end(random_data));
-		T seededEngine (seeds);
-		return seededEngine;
-	}
+    template<class T = std::mt19937, std::size_t N = T::state_size>
+    auto ProperlySeededRandomEngine () -> typename std::enable_if<!!N, T>::type {
+        typename T::result_type random_data[N];
+        std::random_device source;
+        std::generate(std::begin(random_data), std::end(random_data), std::ref(source));
+        std::seed_seq seeds(std::begin(random_data), std::end(random_data));
+        T seededEngine (seeds);
+        return seededEngine;
+    }
 };
 
 } // Lotto namespace

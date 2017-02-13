@@ -14,17 +14,15 @@
 namespace Lotto
 {
 
-class LotteryGuess; ///< Forward declaration of the lottery object that will represent a lotto guess.
-
 class Lottery: public LottoGenerator
 {
 public:
-	Lottery(int lottoSize = Lotto::LOTTO_SIZE_DEFAULT, int maxNumber = Lotto::LOTTO_MAX_NUMBER);
-	bool Compare(const LottoGenerator &guess);
-	virtual void GenerateNewLotto();
+    Lottery(int lottoSize = Lotto::LOTTO_SIZE_DEFAULT, int maxNumber = Lotto::LOTTO_MAX_NUMBER);
+    bool Compare(const LottoGenerator &guess) const;
+    virtual void GenerateNewLotto();
 
 private:
-	std::vector<bool> mLottoSelected;
+    std::vector<bool> mLottoSelected;
 
 };
 

@@ -7,38 +7,37 @@
 //
 
 #include "Lottery.hpp"
-#include "LotteryGuess.hpp"
 
 using namespace Lotto;
 
 Lottery::Lottery(int lottoSize, int maxNumber):
 	LottoGenerator(lottoSize, maxNumber)
 {
-	GenerateNewLotto();
+    GenerateNewLotto();
 }
 
 void Lottery::GenerateNewLotto()
 {
-	mLottoSelected.clear();
-	for (int i = 0; i <= mMaxNumber; ++i)
-	{
-		mLottoSelected.push_back(false);
-	}
-	LottoGenerator::GenerateNewLotto();
-	for (int i = 0; i < mLottoSize; ++i)
-	{
-		mLottoSelected[GetNumberAtIndex(i)] = true;
-	}
+    mLottoSelected.clear();
+    for (int i = 0; i <= mMaxNumber; ++i)
+    {
+        mLottoSelected.push_back(false);
+    }
+    LottoGenerator::GenerateNewLotto();
+    for (int i = 0; i < mLottoSize; ++i)
+    {
+        mLottoSelected[GetNumberAtIndex(i)] = true;
+    }
 }
 
-bool Lottery::Compare(const LottoGenerator &guess)
+bool Lottery::Compare(const LottoGenerator &guess) const
 {
-	for (int i = 0; i < mLottoSize; ++i)
-	{
-		if (!mLottoSelected[guess.GetNumberAtIndex(i)])
-		{
-			return false;
-		}
-	}
-	return true;
+    for (int i = 0; i < mLottoSize; ++i)
+    {
+        if (!mLottoSelected[guess.GetNumberAtIndex(i)])
+        {
+            return false;
+        }
+    }
+    return true;
 }
